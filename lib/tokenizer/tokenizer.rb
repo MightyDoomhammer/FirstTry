@@ -1,0 +1,1 @@
+puts "Noob mode activated"
