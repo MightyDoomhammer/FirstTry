@@ -1,9 +1,17 @@
 module Tokenizer
+	
 	class Tokenizer
-		def initialize(spr)
+		def initialize(spr = :de)
 			@spr = spr				
 		end
 	puts "Noob mode activated"
-	end
+	
+		def tokenize(str)
+			tokens = []
+			tokens = str.split
+			return tokens
+		end
 
+	end
+	
 end

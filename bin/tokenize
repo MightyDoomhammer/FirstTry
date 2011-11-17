@@ -1,2 +1,10 @@
 $LOAD_PATH.unshift('./lib')
 require "tokenizer"
+
+options = :de
+t = Tokenizer::Tokenizer.new(options)
+
+while str = gets
+	a = t.tokenize(str)
+	puts a
+end
