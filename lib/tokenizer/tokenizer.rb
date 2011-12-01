@@ -1,4 +1,6 @@
 module Tokenizer
+
+Limit = /\s+/ 
 	
 	class Tokenizer
 		def initialize(spr = :de)
@@ -8,7 +10,7 @@ module Tokenizer
 	
 		def tokenize(str)
 			tokens = []
-			tokens = str.split
+			tokens = str.split(Limit)
 			return tokens
 		end
 
