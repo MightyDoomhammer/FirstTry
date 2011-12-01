@@ -1,0 +1,8 @@
+require 'rake/clean'
+require 'rdoc/task'
+CLOBBER.include('rdoc')
+RDoc::Task.new do |rdoc|
+rdoc.rdoc_dir = 'rdoc'
+end
+desc 'Beschreibung neu erstellen.'
+task :doc =>[:clobber, :rdoc] #aufgaben die vor doc gemacht werden müssen
