@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift('./lib')
 require "tokenizer"
 
-options = :de
+options = tokenizer::OptParser.parse(ARGV)
 t = Tokenizer::Tokenizer.new(options)
 
 while str = gets
