@@ -6,7 +6,7 @@ Limit = /\s+/
 		def initialize(spr = :de)
 			@spr = spr				
 		end
-	puts "Noob mode activated"
+	puts "Tokenizer running..."
 	
 		def tokenize(str)
 			tokens = []
