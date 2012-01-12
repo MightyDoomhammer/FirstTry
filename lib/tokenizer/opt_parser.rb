@@ -9,7 +9,7 @@ module Tokenizer
 		def OptParser.parse(args)
 			@@options = {:lang => :de, :lines =>[]}
 			begin
-			parser = create_parser   #OptParser.create_parser liefert dasselbe
+			parser = create_parser   #OptParser.create_parser returns the same
 			parser.parse(args)
 			rescue OptionParser::InvalidArgument
 			rescue OptionParser::InvalidOption => e
@@ -24,10 +24,10 @@ module Tokenizer
 		def OptParser.create_parser
 			OptionParser.new do |args|
 				args.banner = 'Usage: tokenize ARGS'
-				args.on('-h', '--help', 'show this summary') do #für help informationen
+				args.on('-h', '--help', 'show this summary') do #for help information
 					puts args; exit
 					end
-				args.on('-v', '--version', 'show version') do #Versionsinformation
+				args.on('-v', '--version', 'show version') do #Version information
 					puts "Current tokenizer version: #{Version}"; exit
 					end
 				

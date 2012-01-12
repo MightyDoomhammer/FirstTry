@@ -5,7 +5,7 @@ require 'tokenizer'
 class TestTokenizerDev < Test::Unit::TestCase
 
   def setup
-    @de_tokenizer = Tokenizer::Tokenizer.new(:de)
+    @de_tokenizer = Tokenizer::Tokenizer.new({:spr => :de})
   end
 
   def test_tokenization_001

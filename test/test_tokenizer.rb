@@ -4,7 +4,7 @@ require 'test/unit'
 class TestTokenizer < Test::Unit::TestCase
 
 	def setup
-		@t = Tokenizer::Tokenizer.new(:de) # neue Instanz Tokenizer vor Tests (DE wegen Sprache)
+		@t = Tokenizer::Tokenizer.new({:spr => :de}) # neue Instanz Tokenizer vor Tests (DE wegen Sprache)
 		@result = @t.tokenize("string")
 	end # setup
 
