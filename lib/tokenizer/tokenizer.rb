@@ -1,56 +1,52 @@
-require 'tokenizer/error'
+﻿require 'tokenizer/error'
 
 module Tokenizer
 
-Limit = /\s+/ 
-	
-	class Tokenizer
-	#POST = %w {" . ? ! - , ) ] : ; }
-	#PRE = %w {" - ( [  }
-	
-	
-		def initialize(params = {:spr => :de})
-			#@spr = spr				
-			check_params(params)
-		end
-	puts "Tokenizer running..."
-	
-		def tokenize(str)
-			tokens = []
-			tokens = str.split(Limit) #wordlimit
-			tokens = sep.punct(tokens)
-			return tokens
-		end
-	
-		private
-	
-		def check_params(params)	#checking correctness of parameters
-			if !params.instance_of?(Hash)
-				fail(UserError, "Die Parameter sind keine Hash-Struktur!")
-			elsif params.empty?
-				fail(UserError, "Die Parameter sind leer!")
-			elsif !params.has_key?(:spr)
-				fail(UserError, "Der Parameter \'lang\' hat keinen Wert!")
-			end
-		end
-		
-		def sep_punct(tokens)	#Satzzeichen abtrennen
-			output = ''
-			fields = str.split(token)
-			  tokens.each do |words|
-				words.each_char do |ch|
-					if POST.include?(ch)
-						output << "\n#{ch}"
-					elsif PRE.include?(ch)
-						output << "#{ch}\n"
-					else
-						output << ch
-					end
-				end
-				output << "\n"
-			  end
-			output.split("\n")
+class Tokenizer
+@lang #Language
+WL = /\s+/ #word limit
+PRE = %w{ ( " ' [ \{ « ? ‹ ‘ ‚ “ „ ¡ ¿}
+POST = %w{ ! " ] ) , . / : ; = ? ­ · » ? ; › ’ ” ' \} }
+
+	def initialize(params = {:lang => :de})
+		check_params(params)
+	end
+#Returns the tokens contained in the given string.
+	def tokenize(str)
+		tokens = str.split(WL)
+		tokens = sep_punct(tokens)
+		tokens
+	end
+
+private
+
+#Check for valid parameters 
+	def check_params(params)
+		if !params.instance_of?(Hash)
+			fail(UserError, "Die Parameter sind keine Hash-Struktur!")
+		elsif params.empty?
+			fail(UserError, "Die Parameter sind leer!")
+		elsif !params.has_key?(:lang)
+			fail(UserError, "Der Parameter \'lang\' hat keinen Wert!")
 		end
 	end
 	
-end
+#Separate punctuation from tokens
+	def sep_punct (tokens)
+		out = ""
+		tokens.each do |token|
+			token.each_char do |c|
+				if PRE.include?(c)
+					out << "#{c}\n"
+				elsif POST.include?(c)
+					out << "\n#{c}"
+				else
+					out << c
+				end
+			end
+		out << "\n"
+		end
+		out.split(/\n+/)
+	end
+end #class
+end #module
