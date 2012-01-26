@@ -10,6 +10,7 @@ POST = %w{ ! " ] ) , . / : ; = ? ­ · » ? ; › ’ ” ' \} }
 
 	def initialize(params = {:lang => :de})
 		check_params(params)
+		@abrl = new_list("#{:lang}_abbr.txt")	#returns Array
 	end
 #Returns the tokens contained in the given string.
 	def tokenize(str)
@@ -19,6 +20,14 @@ POST = %w{ ! " ] ) , . / : ; = ? ­ · » ? ; › ’ ” ' \} }
 	end
 
 private
+
+	def new_list(filename)
+		f = File.open(filename, 'r') #file exists? readable? damaged?
+		l = f.readlines
+		f.close
+		l
+	end
+
 
 #Check for valid parameters 
 	def check_params(params)
@@ -50,3 +59,8 @@ private
 	end
 end #class
 end #module
+
+
+
+# in sep_punct implementieren, dass Abkürzungen nicht der Punkt weg kommt
+# test für new_list

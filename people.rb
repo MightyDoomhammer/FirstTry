@@ -17,11 +17,16 @@ include Enumerable
 		end
 	end
 	
+	def <=>(other)
+		return 1 if @names > other.names
+		return -1 if @names < other.names
+		return 0 
+	end
+	
 end #class
 
 men = People.new
-%w{a b c d}.each{|n| men << n} #n = names
+%w{a c d b}.each{|n| men << n} #n = names
 men.reverse_each{|m| puts m}
-
-
-#sort für People definieren
+puts
+puts men.sort
