@@ -10,7 +10,7 @@ POST = %w{ ! " ] ) , . / : ; = ? ­ · » ? ; › ’ ” ' \} }
 
 	def initialize(params = {:lang => :de})
 		check_params(params)
-		@abrl = new_list("#{:lang}_abbr.txt")	#returns Array
+		@abrl = new_list("#{params[:lang]}_abbr.txt")	#returns Array
 	end
 #Returns the tokens contained in the given string.
 	def tokenize(str)
@@ -22,10 +22,9 @@ POST = %w{ ! " ] ) , . / : ; = ? ­ · » ? ; › ’ ” ' \} }
 private
 
 	def new_list(filename)
-		f = File.open(filename, 'r') #file exists? readable? damaged?
-		l = f.readlines
-		f.close
-		l
+		File.open(filename, 'r') { |f| #file exists? readable? damaged?
+			f.readlines
+		}
 	end
 
 
